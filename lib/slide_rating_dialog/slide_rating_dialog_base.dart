@@ -1,4 +1,4 @@
-import 'package:common_impls/src/slide_rating_dialog/utils_rating_dialog.dart';
+import 'package:common_impls/slide_rating_dialog/utils_rating_dialog.dart';
 import 'package:flutter/material.dart';
 
 typedef OnChangeCallback = void Function(int index);

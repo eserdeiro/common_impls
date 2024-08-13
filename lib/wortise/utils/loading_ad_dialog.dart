@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:common_impls/common_impls.dart';
 import 'package:flutter/material.dart';
-import 'package:common_impls/src/constants/app_sizes.dart';
-import 'package:common_impls/src/wortise/utils/loader_animation.dart';
+import 'package:common_impls/constants/app_sizes.dart';
+import 'package:common_impls/wortise/utils/loader_animation.dart';
 
 Future<void> loadingAdDialog({double size = Sizes.p64}) async {
   final globalNavigatorKey = CommonImpls().globalNavigatorKey;

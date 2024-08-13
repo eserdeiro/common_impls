@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:common_impls/src/wortise/utils/loading_ad_dialog.dart';
+import 'package:common_impls/wortise/utils/loading_ad_dialog.dart';
 import 'package:wortise/interstitial_ad.dart';
 
 class InterstitialAdManager {
