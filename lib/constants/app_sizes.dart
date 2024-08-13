@@ -23,6 +23,8 @@ class Sizes {
   static const p100 = 100.0;
   static const p200 = 200.0;
   static const infinity = double.infinity;
+  static double nativeAdGoogleSize = 370;
+  static double nativeAdSize = 350;
 }
 
 /// Constant gap widths
@@ -50,6 +52,3 @@ const gapH64 = SizedBox(height: Sizes.p64);
 /// Constant border radius
 final borderRadius16 = BorderRadius.circular(Sizes.p16);
 final borderRadius50 = BorderRadius.circular(Sizes.p50);
-
-const double nativeAdGoogleSize = 370;
-const double nativeAdSize = 350;
