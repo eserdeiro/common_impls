@@ -38,7 +38,15 @@ class RateManager {
     await prefs.setInt(_rateCountKey, _rateCount);
   }
 
-  static void tryToShowRateDialog() {
+  static void tryToShowRateDialog(
+      {String? title,
+      String? subtitle,
+      String? buttonTitle,
+      String? oneStar,
+      String? twoStar,
+      String? threeStar,
+      String? fourStar,
+      String? fiveStar}) {
     if (_rateDialogShown || (_rateValue != null && _rateSubmitted)) {
       return;
     }
@@ -47,13 +55,29 @@ class RateManager {
     if (rateShown) {
       _rateCount = 0;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        _showRateDialog();
+        _showRateDialog(
+          title: title,
+          subtitle: subtitle,
+          buttonTitle: buttonTitle,
+          oneStar: oneStar,
+          twoStar: twoStar,
+          threeStar: threeStar,
+          fourStar: fourStar,
+          fiveStar: fiveStar,
+        );
       });
     }
   }
 
   static void _showRateDialog(
-      {String? title, String? subtitle, String? buttonTitle}) {
+      {String? title,
+      String? subtitle,
+      String? buttonTitle,
+      String? oneStar,
+      String? twoStar,
+      String? threeStar,
+      String? fourStar,
+      String? fiveStar}) {
     final globalNavigatorKey = CommonImpls().globalNavigatorKey;
     showDialog(
       context: globalNavigatorKey.currentContext!,
@@ -65,6 +89,11 @@ class RateManager {
           subtitle: subtitle,
           backgroundColor: Theme.of(context).dialogBackgroundColor,
           buttonTitle: buttonTitle,
+          oneStar: oneStar,
+          twoStar: twoStar,
+          threeStar: threeStar,
+          fourStar: fourStar,
+          fiveStar: fiveStar,
           onRatingChanged: (rating) {
             _rateValue = rating;
             _saveRateValue();
