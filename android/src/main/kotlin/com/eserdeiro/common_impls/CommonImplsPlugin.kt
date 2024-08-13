@@ -3,6 +3,7 @@ package com.eserdeiro.common_impls
 import NativeCardAd
 import NativeCardGoogleAD
 import NativeTileAd
+import android.view.LayoutInflater
 import com.wortise.ads.flutter.natives.GoogleNativeAdManager
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -21,19 +22,14 @@ class CommonImplsPlugin : FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "common_impls")
     channel.setMethodCallHandler(this)
-    // Register ad factories here
-    GoogleNativeAdManager.registerAdFactory(
-            "card-ad",
-            NativeCardAd(flutterPluginBinding.applicationContext.layoutInflater)
-    )
-    GoogleNativeAdManager.registerAdFactory(
-            "card-ad-google",
-            NativeCardGoogleAD(flutterPluginBinding.applicationContext.layoutInflater)
-    )
-    GoogleNativeAdManager.registerAdFactory(
-            "tile-ad",
-            NativeTileAd(flutterPluginBinding.applicationContext.layoutInflater)
-    )
+
+    // Obtener el LayoutInflater desde el contexto
+    val layoutInflater = LayoutInflater.from(flutterPluginBinding.applicationContext)
+
+    // Registrar las fábricas de anuncios aquí
+    GoogleNativeAdManager.registerAdFactory("card-ad", NativeCardAd(layoutInflater))
+    GoogleNativeAdManager.registerAdFactory("card-ad-google", NativeCardGoogleAD(layoutInflater))
+    GoogleNativeAdManager.registerAdFactory("tile-ad", NativeTileAd(layoutInflater))
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
@@ -46,7 +42,8 @@ class CommonImplsPlugin : FlutterPlugin, MethodCallHandler {
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
-    // Unregister ad factories here
+
+    // Desregistrar las fábricas de anuncios aquí
     GoogleNativeAdManager.unregisterAdFactory("card-ad")
     GoogleNativeAdManager.unregisterAdFactory("tile-ad")
     GoogleNativeAdManager.unregisterAdFactory("card-ad-google")
