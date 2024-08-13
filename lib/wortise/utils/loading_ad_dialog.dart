@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:common_impls/common_impls.dart';
 import 'package:flutter/material.dart';
-import 'package:common_impls/constants/app_sizes.dart';
-import 'package:common_impls/widgets/loader_animation.dart';
 
 Future<void> loadingAdDialog(
     {double size = Sizes.p64, String? dialogText}) async {

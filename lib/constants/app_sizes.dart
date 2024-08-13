@@ -2,18 +2,26 @@ import 'package:flutter/material.dart';
 
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
 class Sizes {
+  static const p01 = .1;
+  static const p03 = .3;
   static const p4 = 4.0;
   static const p8 = 8.0;
   static const p12 = 12.0;
   static const p16 = 16.0;
+  static const p18 = 18.0;
   static const p20 = 20.0;
   static const p24 = 24.0;
   static const p32 = 32.0;
+  static const p36 = 36.0;
   static const p38 = 38.0;
   static const p48 = 48.0;
   static const p50 = 50.0;
+  static const p54 = 54.0;
   static const p64 = 64.0;
   static const p75 = 75.0;
+  static const p100 = 100.0;
+  static const p200 = 200.0;
+  static const infinity = double.infinity;
 }
 
 /// Constant gap widths
@@ -37,3 +45,7 @@ const gapH24 = SizedBox(height: Sizes.p24);
 const gapH32 = SizedBox(height: Sizes.p32);
 const gapH48 = SizedBox(height: Sizes.p48);
 const gapH64 = SizedBox(height: Sizes.p64);
+
+/// Constant border radius
+final borderRadius16 = BorderRadius.circular(Sizes.p16);
+final borderRadius50 = BorderRadius.circular(Sizes.p50);
