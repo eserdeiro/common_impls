@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:common_impls/constants/app_sizes.dart';
 import 'package:common_impls/widgets/loader_animation.dart';
 
-Future<void> loadingAdDialog({double size = Sizes.p64, String? text}) async {
+Future<void> loadingAdDialog(
+    {double size = Sizes.p64, String? dialogText}) async {
   final globalNavigatorKey = CommonImpls().globalNavigatorKey;
   Future.delayed(const Duration(seconds: 2), () {
     if (globalNavigatorKey.currentState?.canPop() ?? false) {
@@ -33,7 +34,7 @@ Future<void> loadingAdDialog({double size = Sizes.p64, String? text}) async {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    text ?? 'Loading ad',
+                    dialogText ?? 'Loading ad',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: Sizes.p24,

@@ -65,7 +65,7 @@ class InterstitialAdManager {
     _refreshTimer?.cancel();
   }
 
-  Future<void> showAdIfAvailable() async {
+  Future<void> showAdIfAvailable({String? dialogText}) async {
     _adCallCount++;
     final interstitialShown = InterstitialAdManager().interstitialShown;
     if (!(await _interstitialAd.isAvailable) ||
@@ -75,7 +75,7 @@ class InterstitialAdManager {
     }
 
     _adCallCount = 0;
-    await loadingAdDialog();
+    await loadingAdDialog(dialogText: dialogText);
     await _interstitialAd.showAd();
   }
 }
