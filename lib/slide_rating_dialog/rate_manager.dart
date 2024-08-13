@@ -52,18 +52,19 @@ class RateManager {
     }
   }
 
-  static void _showRateDialog() {
+  static void _showRateDialog(
+      {String? title, String? subtitle, String? buttonTitle}) {
     final globalNavigatorKey = CommonImpls().globalNavigatorKey;
     showDialog(
       context: globalNavigatorKey.currentContext!,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return SlideRatingDialog(
-          title: 'Do you like this app?',
+          title: title,
           foregroundColor: Colors.white,
-          subTitle: 'Help us with 5 stars',
+          subtitle: subtitle,
           backgroundColor: Theme.of(context).dialogBackgroundColor,
-          buttonTitle: 'Send',
+          buttonTitle: buttonTitle,
           onRatingChanged: (rating) {
             _rateValue = rating;
             _saveRateValue();

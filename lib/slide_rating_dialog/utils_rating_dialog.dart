@@ -16,18 +16,24 @@ double getWidth(BuildContext context, int a) {
   return 70;
 }
 
-String getMessage(int a) {
+String getMessage(int a,
+    {String? oneStar,
+    String? twoStar,
+    String? threeStar,
+    String? fourStar,
+    String? fiveStar}) {
   switch (a) {
     case 1:
-      return 'Worst';
+      return oneStar ?? 'Worst';
     case 2:
-      return 'Not good';
+      return twoStar ?? 'Not good';
     case 3:
-      return 'Good';
+      return threeStar ?? 'Good';
     case 4:
-      return 'Excellent';
+      return fourStar ?? 'Excellent';
     case 5:
-      return 'Outstanding';
+      return fiveStar ?? 'Outstanding';
+    default:
+      return fiveStar ?? 'Outstanding';
   }
-  return 'Outstanding';
 }

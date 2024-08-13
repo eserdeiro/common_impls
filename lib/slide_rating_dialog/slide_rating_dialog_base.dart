@@ -14,13 +14,13 @@ class SlideRatingDialog extends StatefulWidget {
   final Widget? pointerWidget;
 
   /// Dialog Title
-  final String title;
+  final String? title;
 
   /// Dialog Sub Title
-  final String subTitle;
+  final String? subtitle;
 
   /// Button Title
-  final String buttonTitle;
+  final String? buttonTitle;
 
   /// Color for submit Button
   final Color buttonColor;
@@ -46,11 +46,17 @@ class SlideRatingDialog extends StatefulWidget {
   /// list of offsets
   final List<double>? positionList;
 
+  final String? oneStar;
+  final String? twoStar;
+  final String? threeStar;
+  final String? fourStar;
+  final String? fiveStar;
+
   const SlideRatingDialog(
       {super.key,
       required this.onRatingChanged,
-      this.title = "Rating",
-      this.subTitle = "How was your experience with us?",
+      this.title,
+      this.subtitle,
       this.buttonColor = Colors.deepPurpleAccent,
       this.backgroundColor = Colors.white,
       this.foregroundColor = Colors.black,
@@ -61,7 +67,12 @@ class SlideRatingDialog extends StatefulWidget {
       this.cancelButton = true,
       required this.buttonOnTap,
       this.ratingBarBackgroundColor = const Color(0xFFF1F5F8),
-      this.buttonTitle = "Submit"});
+      this.buttonTitle,
+      this.oneStar,
+      this.twoStar,
+      this.threeStar,
+      this.fourStar,
+      this.fiveStar});
 
   @override
   State<SlideRatingDialog> createState() => _SlideRatingDialogState();
@@ -111,7 +122,7 @@ class _SlideRatingDialogState extends State<SlideRatingDialog> {
                     )
                   : const SizedBox(),
               Text(
-                widget.title,
+                widget.title ?? 'Do you like this app?',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontSize: 28.0, fontWeight: FontWeight.w700),
@@ -121,7 +132,7 @@ class _SlideRatingDialogState extends State<SlideRatingDialog> {
                 width: 0.0,
               ),
               Text(
-                widget.subTitle,
+                widget.subtitle ?? 'Help us with 5 stars',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontSize: 16.0, fontWeight: FontWeight.w400),
@@ -139,7 +150,12 @@ class _SlideRatingDialogState extends State<SlideRatingDialog> {
                 width: 0.0,
               ),
               Text(
-                getMessage(starCount),
+                getMessage(starCount,
+                    oneStar: widget.oneStar,
+                    twoStar: widget.twoStar,
+                    threeStar: widget.threeStar,
+                    fourStar: widget.fourStar,
+                    fiveStar: widget.fiveStar),
                 style: const TextStyle(
                     fontSize: 20.0, fontWeight: FontWeight.w500),
               ),
@@ -317,7 +333,7 @@ class _SlideRatingDialogState extends State<SlideRatingDialog> {
                   ),
                   alignment: Alignment.center,
                   child: Text(
-                    widget.buttonTitle,
+                    widget.buttonTitle ?? 'Send',
                     style: TextStyle(
                         fontSize: 20.0,
                         color: widget.foregroundColor,
