@@ -1,5 +1,8 @@
 package com.eserdeiro.common_impls
 
+import NativeCardAd
+import NativeCardGoogleAD
+import NativeTileAd
 import com.wortise.ads.flutter.natives.GoogleNativeAdManager
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
