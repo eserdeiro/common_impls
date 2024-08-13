@@ -1,7 +1,10 @@
-import 'package:common_impls/src/slide_rating_dialog/slide_rating_dialog_base.dart';
+import 'dart:developer';
+
+import 'package:common_impls/common_impls.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:common_impls/src/slide_rating_dialog/slide_rating_dialog_base.dart';
 
 class RateManager {
   static const String _rateCountKey = 'rate_count';
@@ -10,7 +13,6 @@ class RateManager {
   static const String _rateSubmittedKey = 'rate_submitted';
 
   static const int _maxPushCount = 4;
-
   static Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
     _rateCount = prefs.getInt(_rateCountKey) ?? 0;
@@ -44,51 +46,51 @@ class RateManager {
     incrementRateCount();
     if (rateShown) {
       _rateCount = 0;
-
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        final overlayState = Overlay.of(WidgetsBinding.instance.rootElement!);
-        late OverlayEntry overlayEntry;
-
-        overlayEntry = OverlayEntry(
-          builder: (context) {
-            return Material(
-              color: Colors.black.withOpacity(0.5),
-              child: Center(
-                child: SlideRatingDialog(
-                  title: 'Te gusta esta app?',
-                  foregroundColor: Colors.white,
-                  subTitle: 'Ayúdanos con 5 estrellas',
-                  backgroundColor: Theme.of(context).dialogBackgroundColor,
-                  buttonTitle: 'Enviar',
-                  onRatingChanged: (rating) {
-                    _rateValue = rating;
-                    _saveRateValue();
-                  },
-                  buttonOnTap: () {
-                    if (_rateValue == null) {
-                      overlayEntry.remove();
-                    } else {
-                      _rateSubmitted = true;
-                      _rateDialogShown = true;
-                      _saveRateSubmitted();
-                      _saveRateDialogShown();
-                      overlayEntry.remove();
-                      if (_rateValue! >= 3) {
-                        goToRate();
-                      } else {
-                        // thanksForRatingUsSnackbar();
-                      }
-                    }
-                  },
-                ),
-              ),
-            );
-          },
-        );
-
-        overlayState.insert(overlayEntry);
+        _showRateDialog();
       });
     }
+  }
+
+  static void _showRateDialog() {
+    final globalNavigatorKey = CommonImpls().globalNavigatorKey;
+    showDialog(
+      context: globalNavigatorKey.currentContext!,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return SlideRatingDialog(
+          title: 'Do you like this app?',
+          foregroundColor: Colors.white,
+          subTitle: 'Help us with 5 stars',
+          backgroundColor: Theme.of(context).dialogBackgroundColor,
+          buttonTitle: 'Send',
+          onRatingChanged: (rating) {
+            _rateValue = rating;
+            _saveRateValue();
+          },
+          buttonOnTap: () {
+            if (_rateValue == null) {
+              Navigator.of(context).pop();
+              return;
+            } else {
+              _rateSubmitted = true;
+              _rateDialogShown = true;
+              _saveRateSubmitted();
+              _saveRateDialogShown();
+              Navigator.of(context).pop();
+              if (_rateValue! >= 3) {
+                goToRate();
+              } else {
+                log('thanks');
+              }
+            }
+          },
+        );
+      },
+      routeSettings: const RouteSettings(
+        name: '/rate-dialog',
+      ),
+    );
   }
 
   static Future<void> goToRate() async {

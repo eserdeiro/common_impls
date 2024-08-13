@@ -1,8 +1,6 @@
-
-import 'common_impls_platform_interface.dart';
+import 'package:flutter/material.dart';
 
 class CommonImpls {
-  Future<String?> getPlatformVersion() {
-    return CommonImplsPlatform.instance.getPlatformVersion();
-  }
+  final GlobalKey<NavigatorState> globalNavigatorKey =
+      GlobalKey<NavigatorState>();
 }
