@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/rounded_corners">
+
+  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ad" android:textColor="#FFFFFF" android:textSize="12sp" android:padding="2dp" android:background="@drawable/bg_ad"/>
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+    <!-- MediaView for video or main image -->
+    <com.google.android.gms.ads.nativead.MediaView
+      android:id="@+id/media_view"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      android:visibility="gone"/>
+
+    <ImageView android:id="@+id/image_card" android:layout_width="match_parent" android:layout_height="200dp" android:src="@drawable/ic_launcher"/>
+
+    <View android:layout_width="match_parent" android:layout_height="16dp"/>
+
+    <!-- Horizontal LinearLayout for text and CTA button -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+
+      <!-- Vertical LinearLayout for Headline and Body -->
+      <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+
+        <TextView android:id="@+id/headline_card" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:textStyle="bold" android:textColor="#FFFFFF" android:text="Test title" android:maxLines="1" android:ellipsize="end" android:maxLength="25" />
+
+        <RatingBar android:id="@+id/star_rating_card" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingVertical="4dp" android:numStars="5" android:rating="4.5" android:stepSize="0.5" android:isIndicator="true" android:layout_gravity="start" style="?android:attr/ratingBarStyleSmall" />
+
+        <TextView android:id="@+id/body_card" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="14sp" android:textColor="#FFFFFF" android:text="Sample description text" android:maxLines="2" android:ellipsize="end" android:maxLength="90" />
+
+      </LinearLayout>
+
+      <Button android:id="@+id/cta_button_card" android:layout_width="32dp" android:layout_height="32dp" android:background="@drawable/ic_arrow_downward"/>
+
+    </LinearLayout>
+  </LinearLayout>
+</com.google.android.gms.ads.nativead.NativeAdView>
